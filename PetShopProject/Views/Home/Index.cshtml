@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<h2 style="text-align:center">the 2 most popular animals right now are:</h2>
+<table class="table table-dark">
+    <tr>
+        <th>picture:</th>
+        <th>Name:</th>
+        <th>Description:</th>
+        <th>number of comments:</th>
+    </tr>
+    @foreach (var animal in Model)
+    {
+        <tr>
+            <td>
+                <img class="img-thumbnail" style="width:600px" src="@animal.PictureName">
+            </td>
+            <td>@animal.Name</td>
+            <td>@animal.Descripition:</td>
+            <td>@animal.Comments.Count</td>
+        </tr>
+    }
+</table>
+
+
+
+
+
+
+
+
+
+
+

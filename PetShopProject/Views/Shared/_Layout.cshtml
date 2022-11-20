@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Styles/StyleSheet.css" />
+    <link rel="stylesheet" href="~/Styles/bootstrap.css" />
+    <script src="~/Script/jquery.js"> </script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Script/popper.js"></script>
+   
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    
+    <h1 style="text-align:center">welcome to the exotic pet-shop </h1>
+    <a asp-action="Index" asp-controller="Catalog" style="background-color:black" class="text-white"> Catalog </a>
+    <a asp-action="Index" asp-controller="Administrator" style="background-color:black" class="text-white">Administrator </a>
+    <a asp-action="Index" asp-controller="Home" style="background-color:black" class="text-white">Home</a>
+
+    <div>
+        @RenderBody()
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

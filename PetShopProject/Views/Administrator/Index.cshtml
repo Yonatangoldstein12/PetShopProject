@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>Adminstrator page</h1>
+<label>Animal category:</label>
+<div class="float-right">
+<a style="text-align:center" href="/Administrator/AddAnimal">Add animal</a>
+</div>
+
+
+<label>Animal category:</label>
+<script>
+    $(function () {
+        $(".cat-select").change(function () {
+            let selected = $('.cat-select').val();
+            window.location.href = "/Administrator/Index/" + selected
+        });
+    });
+</script>
+
+<div class="align-content-center">
+
+    <select class="cat-select">
+        <option value="">Selected type</option>
+        <option value="0">All Animals</option>
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option value="@category.CategoryId">@category.Name</option>
+        }
+    </select>
+</div>
+
+<table class="table table-dark">
+    <tr>
+        <th>picture:</th>
+        <th>Name:</th>
+        <th>Description:</th>
+        <th></th>
+    </tr>
+    @foreach (var animal in Model)
+    {
+        <tr>
+            <td>
+                <img class="img-thumbnail" style="width:600px" src="@animal.PictureName">
+            </td>
+            <td>@animal.Name</td>
+            <td>@animal.Descripition:</td>
+            <td><a asp-action="EditAnimal" asp-route-Id=@animal.AnimalId>Edit</a></td>
+            <td><a asp-action="DeleteAnimal" asp-route-Id=@animal.AnimalId>Delete</a></td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,33 @@
+﻿@model PetShopProject.Models.Animal;
+
+@{
+    ViewData["Title"] = "Index";
+    
+}
+<table class="table table-dark">
+    <tr>
+        <th>Name:</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>age:</th>
+        <td>@Model.Age</td>
+    </tr>
+    <tr>
+        <th>Description:</th>
+        <td>@Model.Descripition</td>
+    </tr>
+    <tr>
+        <th> type:</th>
+        <td>@Model.Category?.Name</td>
+    </tr> 
+</table>
+<h1 style="text-align:center"> comments section: </h1>
+<div>
+    @foreach (var item in ViewBag.comments)
+    {
+         @item.Descripition;
+    }
+    <a asp-action="AddComment" asp-route-Id=@Model.AnimalId> add comment</a>
+
+</div>
