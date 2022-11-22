@@ -5,7 +5,7 @@ using PetShopProject.Services;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DBContext>(options => options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 builder.Services.AddTransient<Iripository,Repository>();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 var app = builder.Build();
 app.UseStaticFiles();
 app.UseRouting();

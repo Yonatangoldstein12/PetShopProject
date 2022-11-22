@@ -34,7 +34,7 @@ namespace PetShopProject.Controllers
         {
             var animals = iripository.GetAnimalById(AnimalId);
             iripository.AddComments(comment, AnimalId);
-            return RedirectToAction("Index", "Catalog", new { id = AnimalId });
+            return RedirectToAction("Details", "Catalog", new { id = AnimalId });
         }
     }
 }
