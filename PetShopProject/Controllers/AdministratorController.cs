@@ -8,10 +8,13 @@ namespace PetShopProject.Controllers
     public class AdministratorController : Controller
     {
         private Iripository iripository;
-      
-        public AdministratorController(Iripository _iripository)
+            private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _HostDataBase;
+
+        public AdministratorController(Microsoft.AspNetCore.Hosting.IHostingEnvironment _HostingContext,Iripository _iripository)
         {
             this.iripository= _iripository;
+            this._HostDataBase = _HostingContext;
+
         }
         public IActionResult Index(int Id)
         {
@@ -48,11 +51,34 @@ namespace PetShopProject.Controllers
         public IActionResult AddAnimal()
         {
             ViewBag.Categories = iripository.GetCategories();
-            return View();
+            return View(new Animal());
         }
         [HttpPost]
         public IActionResult AddAnimal(Animal animal)
         {
+              string UniqeFileName = null;
+
+            if (
+                ModelState.ErrorCount==1&&
+                ModelState.GetFieldValidationState("PicturePath")==Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid)
+            {
+                string UploadFolder = Path.Combine(_HostDataBase.WebRootPath, "Images");
+                UniqeFileName = Guid.NewGuid().ToString() + "_" + animal.File!.FileName;
+                string FilePath = Path.Combine(UploadFolder, UniqeFileName);
+                animal.File.CopyTo(new FileStream(FilePath, FileMode.Create));
+            }
+            Animal NewAnimal = new Animal
+            {
+                Name = animal.Name,
+                Age = animal.Age,
+                CategoryId = animal.CategoryId,
+                Descripition = animal.Descripition,
+                PicturePath = "Images\\" + UniqeFileName
+            };
+            iripository.AddAnimal(NewAnimal);
+            return RedirectToAction("Index", "Catalog");
+
+
             iripository.AddAnimal(animal);
             return RedirectToAction("Index", iripository.GetAnimals());
         }

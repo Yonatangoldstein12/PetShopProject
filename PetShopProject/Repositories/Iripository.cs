@@ -12,7 +12,7 @@ namespace PetShopProject.Repositories
         void AddAnimal(Animal animal);
         void UpdateAnimal(int id,Animal animal);
          IEnumerable<Animal> ByCategory(int categoryID);
-        IEnumerable<Comments> GetComments(Comments comments);
-        IEnumerable <Comments> ShowComments();
+        IEnumerable<Comments> AddComments(string comment, int id);
+        IEnumerable <Comments> ShowComments(int Id);
     }
 }

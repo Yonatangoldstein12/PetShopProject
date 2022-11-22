@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetShopProject.Models
 {
@@ -21,11 +22,14 @@ namespace PetShopProject.Models
         [Required(ErrorMessage = "Please enter valid Descripition.")]
         public string? Descripition { get; set; }
 
-        [Display(Name = "PictureName:")]
-        [Required(ErrorMessage = "Please enter valid PictureName.")]
-        public string? PictureName { get; set; }
+        [Display(Name = "Picture Path:")]
+        [Required(ErrorMessage = "Please enter valid PicturePath.")]
+        public string? PicturePath { get; set; }
         public int CategoryId { get; set; }
         public virtual Category? Category { get; set; } = null!;
-        public virtual ICollection<Comments>? Comments { get; set; } 
+        public virtual ICollection<Comments>? Comments { get; set; }
+        [NotMapped]
+        public  IFormFile File { get; set; }
+        
     }
 }

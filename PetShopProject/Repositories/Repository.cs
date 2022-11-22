@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PetShopProject.Models;
 using PetShopProject.Services;
+using System.Xml.Linq;
 
 namespace PetShopProject.Repositories
 {
@@ -43,7 +44,7 @@ namespace PetShopProject.Repositories
             animalInDb.Age = animal.Age;
             animalInDb.Category = animal.Category;
             animalInDb.Comments = animal.Comments;
-            animalInDb.PictureName = animal.PictureName;
+            animalInDb.PicturePath = animal.PicturePath;
             animalInDb.Descripition = animal.Descripition;
             dBContext.SaveChanges();
         }
@@ -52,16 +53,21 @@ namespace PetShopProject.Repositories
             return dBContext.Categories.Find(categoryID)!.Animals!;
         }
 
-        public IEnumerable<Comments> GetComments( Comments comments)
+        public IEnumerable<Comments> AddComments( string comment, int id)
         {
-            dBContext.Add(comments);
+            Comments _comment = new()
+            {
+                Descripition = comment,
+                AnimalId = id
+            };
+            dBContext.Add(_comment);
             dBContext.SaveChanges();
             return dBContext.Comments;
         }
-        public IEnumerable <Comments> ShowComments()
+        public IEnumerable <Comments> ShowComments(int Id)
         {
-            var comments = dBContext.Comments.ToList();
-            return comments;
+            var animal = dBContext.Animals!.Find(Id);
+            return animal.Comments!; 
         }
     }
 }

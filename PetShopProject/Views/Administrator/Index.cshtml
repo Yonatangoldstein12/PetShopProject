@@ -3,7 +3,6 @@
     ViewData["Title"] = "Index";
 }
 <h1>Adminstrator page</h1>
-<label>Animal category:</label>
 <div class="float-right">
 <a style="text-align:center" href="/Administrator/AddAnimal">Add animal</a>
 </div>
@@ -42,7 +41,7 @@
     {
         <tr>
             <td>
-                <img class="img-thumbnail" style="width:600px" src="@animal.PictureName">
+                <img class="img-thumbnail" style="width:600px" src="@animal.PicturePath">
             </td>
             <td>@animal.Name</td>
             <td>@animal.Descripition:</td>

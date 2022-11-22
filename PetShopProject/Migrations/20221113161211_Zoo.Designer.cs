@@ -46,7 +46,7 @@ namespace PetShopProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PictureName")
+                    b.Property<string>("PicturePath")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

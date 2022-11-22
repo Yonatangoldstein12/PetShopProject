@@ -25,18 +25,15 @@ namespace PetShopProject.Controllers
         }
         public IActionResult Details(int Id)
         {
-            ViewBag.comments = iripository.ShowComments();
-
+            ViewBag.comments = iripository.ShowComments(Id);
             var animals = iripository.GetAnimalById(Id);
             return View(animals);
         }
         [HttpPost]
-        public IActionResult AddComment(int AnimalId)
+        public IActionResult AddComment(int AnimalId,string comment)
         {
             var animals = iripository.GetAnimalById(AnimalId);
-            var Content = Request.Form["commentMessage"];
-            animals.Comments!.Add(new Comments() { Descripition = Content });
-            DB.SaveChanges();
+            iripository.AddComments(comment, AnimalId);
             return RedirectToAction("Index", "Catalog", new { id = AnimalId });
         }
     }

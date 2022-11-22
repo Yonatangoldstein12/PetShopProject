@@ -81,7 +81,7 @@ namespace PetShopProject.Migrations
 
             migrationBuilder.InsertData(
                 table: "Animals",
-                columns: new[] { "AnimalId", "Age", "CategoryId", "Descripition", "Name", "PictureName" },
+                columns: new[] { "AnimalId", "Age", "CategoryId", "Descripition", "Name", "PicturePath" },
                 values: new object[,]
                 {
                     { 1, 5, 1, "Python is a genus of constricting snakes in the Pythonidae family native to the tropics and subtropics of the Eastern Hemisphere. The name Python was proposed by François Marie Daudin in 1803 for non-venomous flecked snakes. Currently, 10 python species are recognized as valid taxa.", "Python", "https://images.foxtv.com/static.fox10phoenix.com/www.fox10phoenix.com/content/uploads/2021/07/764/432/MyLove-the-snake-crop-3-Courtesy-of-Jay-Brewer.jpg?ve=1&tl=1" },
