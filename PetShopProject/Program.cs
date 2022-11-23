@@ -9,10 +9,7 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 var app = builder.Build();
 app.UseStaticFiles();
 app.UseRouting();
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute("Default", "{controller=Home}/{action=Index}");
-//});
+
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute("Default", "{controller=Home}/{action=Index}/{id?}");

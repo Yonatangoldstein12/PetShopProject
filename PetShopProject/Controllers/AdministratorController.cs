@@ -42,7 +42,26 @@ namespace PetShopProject.Controllers
         [HttpPost]
         public IActionResult EditAnimal(int id, Animal animal)
         {
-            iripository.UpdateAnimal(id, animal);
+            string UniqeFileName = null;
+            if(
+                ModelState.ErrorCount == 1 &&
+                ModelState.GetFieldValidationState("PicturePath") == Microsoft.AspNetCore.Mvc.ModelBinding.ModelValidationState.Invalid)
+            {
+                string UploadFolder = Path.Combine(_HostDataBase.WebRootPath, "Images");
+                UniqeFileName = Guid.NewGuid().ToString() + "_" + animal.File!.FileName;
+                string FilePath = Path.Combine(UploadFolder, UniqeFileName);
+                animal.File.CopyTo(new FileStream(FilePath, FileMode.Create));
+            }
+            Animal NewAnimal = new Animal
+            {
+                Name = animal.Name,
+                Age = animal.Age,
+                CategoryId = animal.CategoryId,
+                Descripition = animal.Descripition,
+                PicturePath = "Images\\" + UniqeFileName
+            };
+
+            iripository.UpdateAnimal(id, NewAnimal);
             return RedirectToAction("Index");
         }
 
@@ -78,9 +97,8 @@ namespace PetShopProject.Controllers
             iripository.AddAnimal(NewAnimal);
             return RedirectToAction("Index", "Catalog");
 
-
-            iripository.AddAnimal(animal);
-            return RedirectToAction("Index", iripository.GetAnimals());
+            //iripository.AddAnimal(animal);
+            //return RedirectToAction("Index", iripository.GetAnimals());
         }
     }
 }

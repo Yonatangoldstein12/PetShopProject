@@ -6,12 +6,13 @@ namespace PetShopProject.Models
     public class Comments
     {
         [Required]
+       
         public int CommentsId { get; set; }
 
         [Display(Name ="comment")]
-        [Required (ErrorMessage ="please write a valid comment")]
         [DataType(DataType.MultilineText)]
-        [StringLength(100)]
+        [Range(1,100)]
+        [Required (ErrorMessage ="please write a valid comment")]
         public string? Descripition { get; set; }
         [ForeignKey("AnimalId")]
         public int AnimalId { get; set; }

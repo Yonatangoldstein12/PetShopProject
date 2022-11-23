@@ -1,14 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using PetShopProject.Models;
 using PetShopProject.Repositories;
 using PetShopProject.Services;
+using System.Xml.Linq;
 
 namespace PetShopProject.Controllers
 {
     public class CatalogController : Controller
     {
         private Iripository iripository;
-        private DBContext DB;
+       
         public CatalogController(Iripository _iripository)
         {
             this.iripository = _iripository;
@@ -25,15 +27,24 @@ namespace PetShopProject.Controllers
         }
         public IActionResult Details(int Id)
         {
-            ViewBag.comments = iripository.ShowComments(Id);
+
+            var comments = iripository.ShowComments(Id);
             var animals = iripository.GetAnimalById(Id);
             return View(animals);
         }
         [HttpPost]
         public IActionResult AddComment(int AnimalId,string comment)
         {
+            if (comment.IsNullOrEmpty()||comment.Length>100)
+            {
+
+                return RedirectToAction("Details", "Catalog", new { id = AnimalId });
+            }
+            else
+            {
             var animals = iripository.GetAnimalById(AnimalId);
             iripository.AddComments(comment, AnimalId);
+            }
             return RedirectToAction("Details", "Catalog", new { id = AnimalId });
         }
     }
