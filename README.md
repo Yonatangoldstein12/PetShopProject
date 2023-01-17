@@ -29,9 +29,3 @@ This Asp.NetCore web app demonstrates MVC pattern with one Layout view contains 
 
 
 
-
-LoginViewModel
-ManageUsersViewModel
-RegisterViewModel
-SearchAnimalViewModel
-
