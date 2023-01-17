@@ -8,7 +8,7 @@ This Asp.NetCore web app demonstrates MVC pattern with one Layout view contains 
 
 <ul>
   <li>
- <h3> ViewModels & models <br>
+ <h3>Models <br>
    Models - pure models which are used in our database and repositories </h3>
   </li>
 <li>Animal </li>
@@ -28,17 +28,31 @@ This Asp.NetCore web app demonstrates MVC pattern with one Layout view contains 
 <li> HomeController </li>
 </ul>
 
-
-
-<h3> ViewModels - added value for implementing a model and binding it with form in-order to create an instance with limitations</h3>
 <ul>
+
+ <h3>ViewModels <br>
+ ViewModels - added value for implementing a model and binding it with form in-order to create an instance with limitations</h3>
   <li>AddAnimalViewModel</li>
   <li>EditAnimalViewModel</li>
   <li>DetailsViewModel</li>
   <li>_MyPartialViewViewModel</li>
   <li>_ValidationScriptsPartialViewModel</li>
 </ul>
+
+
   
+<ul>
+  <li>
+ <h3> wwwroot <br>
+   wwwroot folder - web root folder static files are stored inside the wwwroot folder in asp.net </h3>
+  </li>
+<li> Images- all the images are stored in this folder </li>
+<li> lib folder- storing the jquery-validate </li>
+<li> Script- storing  bootstrap, jquery and popper </li>
+<li>Styles- storing bootstrap.css and styleSheet.css </li>
+</ul>
+
+<ul>
 
 
 
