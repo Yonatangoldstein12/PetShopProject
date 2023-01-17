@@ -13,8 +13,21 @@ This Asp.NetCore web app demonstrates MVC pattern with one Layout view contains 
   </li>
 <li>Animal </li>
 <li> Category </li>
-<li> Comment </li>
+<li> Comments </li>
 </ul>
+
+
+
+<ul>
+  <li>
+ <h3> controllers <br>
+   controller - is responsible for controlling the way that a user interacts with an MVC application </h3>
+  </li>
+<li> AdministratorController </li>
+<li> CatalogController </li>
+<li> HomeController </li>
+</ul>
+
 
 
 <h3> ViewModels - added value for implementing a model and binding it with form in-order to create an instance with limitations</h3>
